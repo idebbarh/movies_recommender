@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies Recommender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <script defer src="js/script.js"></script>
+    <script src="js/moviesData.js"></script>
+  </head>
+  <body>
+    <div class="all-movies-contents-overlay"></div>
+    <!-- Start Header -->
+    <nav class="nav-bar">
+      <a class="logo" href="#">
+        <i class="fa-solid fa-film movie-icon"></i>
+        <span class="logo-title">Movies Recommender</span>
+      </a>
+    </nav>
+    <!-- End Header -->
+    <!-- Start Landing -->
+    <div class="landing">
+      <div class="container">
+        <div class="landing-contents">
+          <!-- first Page -->
+          <div class="first-page">
+            <p class="landing-paragraf">
+              You can’t decide between thousands of movies available for
+              streaming? Answer 5 questions and let us do the work!
+            </p>
+            <button class="questions-btn">Start Now</button>
+          </div>
+          <div class="ques-pages" style="display: none">
+            <!-- Ques One Mood -->
+            <div class="ques-form mods">
+              <div class="ques-title">1. How are you today?</div>
+              <div class="ques-contents">
+                <div class="group-of-ques">
+                <div data-rep="happy" class="ques mod">
+                  <div class="mod-icon">
+                    <i class="fa-solid fa-face-smile"></i>
+                  </div>
+                  <div class="mod-title">Happy</div>
+                </div>
+                <div data-rep="neutral" class="ques mod">
+                  <div class="mod-icon">
+                    <i class="fa-solid fa-face-meh"></i>
+                  </div>
+                  <div class="mod-title">Neutral</div>
+                </div>
+                <div data-rep="sad" class="ques mod">
+                  <div class="mod-icon">
+                    <i class="fa-solid fa-face-frown"></i>
+                  </div>
+                  <div class="mod-title">Sad</div>
+                </div>
+              </div>
+              </div>
+              <button class="questions-btn">Next</button>
+            </div>
+            <!-- Ques Two With Who -->
+            <div class="ques-form with-who">
+              <div class="ques-title">
+                2. What comes closest to your occasion?
+              </div>
+              <div class="ques-contents">
+                <div class="group-of-ques">
+                  <div data-rep="alone" class="ques">
+                    Just watching a movie by myself.
+                  </div>
+                  <div data-rep="date" class="ques">Movie Date.</div>
+                  <div data-rep="friends" class="ques">
+                    Movie Night with friends.
+                  </div>
+                  <div data-rep="family" class="ques">
+                    Watching a movie with family or relatives.
+                  </div>
+                </div>
+              </div>
+              <div class="all-btns">
+                <button class="move-back-btn"><i class="fa-solid fa-arrow-left-long"></i></button>
+                <button class="questions-btn">Next</button>
+              </div>
+            </div>
+            <!-- Ques Three Genres  -->
+            <div class="ques-form genres">
+              <div class="ques-title">
+                3. Please choose any genre you're interested in.
+              </div>
+              <div class="ques-contents">
+                <div class="group-of-ques">
+                  <div class="ques" data-rep="drama">Drama</div>
+                  <div class="ques" data-rep="crime">Crime</div>
+                  <div class="ques" data-rep="action">Action</div>
+                  <div class="ques" data-rep="adventure">Adventure</div>
+                  <div class="ques" data-rep="biography">Biography</div>
+                  <div class="ques" data-rep="history">History</div>
+                  <div class="ques" data-rep="mystery">Mystery</div>
+                  <div class="ques" data-rep="sci-fi">Sci-Fi</div>
+                  <div class="ques" data-rep="romance">Romance</div>
+                  <div class="ques" data-rep="western">Western</div>
+                </div>
+                  <div class="group-of-ques">
+                    <div class="ques" data-rep="fantasy">Fantasy</div>
+                    <div class="ques" data-rep="animation">Animation</div>
+                    <div class="ques" data-rep="family">Family</div>
+                    <div class="ques" data-rep="war">War</div>
+                    <div class="ques" data-rep="comedy">Comedy</div>
+                    <div class="ques" data-rep="thriller">Thriller</div>
+                    <div class="ques" data-rep="music">Music</div>
+                    <div class="ques" data-rep="horror">Horror</div>
+                    <div class="ques" data-rep="musical">Musical</div>
+                    <div class="ques" data-rep="sport">Sport</div>
+                  </div>
+            </div>
+            <div class="all-btns">
+              <button class="move-back-btn"><i class="fa-solid fa-arrow-left-long"></i></button>
+              <button class="questions-btn">Next</button>
+            </div>
+            </div>
+            <!-- Ques Four Release Year  -->
+            <div class="ques-form date">
+              <div class="ques-title">
+                4. How old would you like the movie to be?
+              </div>
+              <div class="ques-contents">
+                <div class="group-of-ques">
+                  <div data-rep="none" class="ques">Doesn't matter.</div>
+                  <div data-rep="3" class="ques">Published in the last 3 years.</div>
+                  <div data-rep="5" class="ques">Published in the last 5 years.</div>
+                  <div data-rep="10" class="ques">Published in the last 10 years.</div>
+                  <div data-rep="20" class="ques">Published in the last 20 years.</div>
+                </div>
+              </div>
+              <div class="all-btns">
+                <button class="move-back-btn"><i class="fa-solid fa-arrow-left-long"></i></button>
+                <button class="questions-btn">Next</button>
+              </div>
+            </div>
+            <!-- Ques Five Story  -->
+            <div class="ques-form story">
+              <div class="ques-title">
+                5. Please select any other category you're interested in.
+              </div>
+              <div class="ques-contents">
+                <div class="group-of-ques">
+                  <div data-rep="heist-movies" class="ques">Heist Movies</div>
+                  <div data-rep="space-movies" class="ques">Space Movies</div>
+                  <div data-rep="true-story" class="ques">Movies based on a true story</div>
+                  <div data-rep="based-on-book" class="ques">Movies based on a book</div>
+                  <div data-rep="top-250-movies" class="ques">IMDb Top 250 Movies</div>
+                </div>
+              </div>
+              <div class="all-btns">
+                <button class="move-back-btn"><i class="fa-solid fa-arrow-left-long"></i></button>
+                <button class="questions-btn">Show Result</button>
+              </div>
+              
+            </div>
+            <!-- Result Page  -->
+            <div class="result">
+              <div class="show-movie-area"></div>
+              <button class="restart-ques-btn">try again</button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Landing -->
+    <!-- Start Movies Contents -->
+    <div class="all-movies-contents">
+      <div class="container">
+        <div class="movies-categ">
+          <!-- My Watchlist -->
+          <div class="movies-section my-watchlist" style="display: none">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>My Watchlist</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- random movies -->
+          <div class="movies-section random-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Random Movies</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- action movies -->
+          <div class="movies-section action-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Action Movies</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- Comedy movies -->
+          <div class="movies-section comedy-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Comedy Movies</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- Drama movies -->
+          <div class="movies-section drama-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Drama Movies</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- Romance movies -->
+          <div class="movies-section romance-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Romance Movies</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- Fantasy movies -->
+          <div class="movies-section fantasy-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Fantasy Movies</span><span>Explore All</span>
+            </div>
+          </div>
+          <!-- Horror movies -->
+          <div class="movies-section horror-movies">
+            <div class="duo-btns">
+              <i class="fa-solid fa-angle-right slide-btn slide-btn-right"></i>
+              <i class="fa-solid fa-angle-left slide-btn slide-btn-left"></i>
+            </div>
+            <div class="section-title">
+              <span>Horror Movies</span><span>Explore All</span>
+            </div>
+          </div>
+        </div>
+        <!-- Explore All My Watch List Movies -->
+        <div class="explore-all all-my-watchlist">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">My Watchlist</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Random Movies -->
+        <div class="explore-all all-random-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Random Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Action Movies -->
+        <div class="explore-all all-action-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Action Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Comedy Movies -->
+        <div class="explore-all all-comedy-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Comedy Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Drama Movies -->
+        <div class="explore-all all-drama-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Drama Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Romance Movies -->
+        <div class="explore-all all-romance-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Romance Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Fantasy Movies -->
+        <div class="explore-all all-fantasy-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Fantasy Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+        <!-- Explore All Horror Movies -->
+        <div class="explore-all all-horror-movies">
+          <i class="fa-solid fa-xmark close-explore-all-btn"></i>
+          <div class="explore-all-title">Horror Movies</div>
+          <div class="explore-all-contents"></div>
+        </div>
+      </div>
+    </div>
+    <!-- End Movies Contents -->
+  </body>
+</html>
