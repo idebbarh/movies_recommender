@@ -87,6 +87,7 @@ function addChildToSection(funcData, sec, rightBtn) {
           sliderFunction(true);
           showExploreAllMovies();
           exploreAllLoadData(true,false,[]);
+          lazyLoading();
         }
       });
     });
@@ -122,6 +123,7 @@ function addChildToSection(funcData, sec, rightBtn) {
             sliderFunction(true);
             showExploreAllMovies();
             exploreAllLoadData(true,false,[]);
+            lazyLoading();
           }, 600);
         });
       });
@@ -246,6 +248,7 @@ window.addEventListener("resize", () => {
   sliderFunction(false);
   showExploreAllMovies();
   exploreAllLoadData(true,false,[]);
+  lazyLoading();
 });
 //to show explore all section
 function showExploreAllMovies() {
@@ -317,7 +320,7 @@ function exploreAllLoadData(justMyWatchList,fromGenerator,generatorData){
     if(!fromWatchList){
       card.innerHTML += `
       <div class="movie-poster">
-      <img src="${movie.image}" alt="${movie.title}">
+      <img data-src="${movie.image}" alt="${movie.title}" class="poster-img">
       <p class="movie-desc">${movie.simple_desc}</p>
       </div>
       <div class="infos">
@@ -337,7 +340,7 @@ function exploreAllLoadData(justMyWatchList,fromGenerator,generatorData){
     }else{
       card.innerHTML += `
       <div class="movie-poster">
-      <img src="${movie.image}" alt="${movie.title}">
+      <img data-src="${movie.image}" alt="${movie.title}" class="poster-img">
       <p class="movie-desc">${movie.simple_desc}</p>
       </div>
       <div class="infos">
@@ -388,6 +391,8 @@ function exploreAllLoadData(justMyWatchList,fromGenerator,generatorData){
     }
     if(addToWatchListBtns !== null){
       addToWatchListBtns.addEventListener("click", () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         if (
           !myWatchListItemsIndexes.includes(
             addToWatchListBtns.getAttribute("data-index")
@@ -412,6 +417,8 @@ function exploreAllLoadData(justMyWatchList,fromGenerator,generatorData){
           sliderFunction(true);
           showExploreAllMovies();
           exploreAllMyWatchList();
+          lazyLoading();
+          window.scrollTo(scrollLeft, scrollTop);
         }
       });
     }
@@ -446,6 +453,7 @@ function exploreAllLoadData(justMyWatchList,fromGenerator,generatorData){
           sliderFunction(true);
           showExploreAllMovies();
           exploreAllMyWatchList();
+          lazyLoading();
         },600);
         });
     }
@@ -589,6 +597,7 @@ quesNextBtns.forEach(btn=>{
           let randomIndx = Math.trunc(Math.random()*returnedMovie.length);
           let showArea = parentNext.querySelector(".show-movie-area");
           showArea.appendChild(exploreAllLoadData(true,true,[returnedMovie[randomIndx][0],returnedMovie[randomIndx][1]]));
+          lazyLoading();
         }else{
           console.log("its vide")
         }
@@ -668,7 +677,7 @@ function generateRandomMovies() {
     let randomMovies = moviesData[randomIndex];
     cardsContainer.innerHTML += `<div class="movie-card">
                                     <div class="movie-poster">
-                                    <img src="${randomMovies.image}" alt="${randomMovies.title}">
+                                    <img data-src="${randomMovies.image}" alt="${randomMovies.title}" class="poster-img">
                                     <p class="movie-desc">${randomMovies.simple_desc}</p>
                                     </div>
                                     <div class="infos">
@@ -747,7 +756,7 @@ function generateSpecificMovies(genre) {
       filmsCounter += 1;
       cardsContainer.innerHTML += `<div class="movie-card">
                                       <div class="movie-poster">
-                                      <img src="${moviesData[i].image}" alt="${moviesData[i].title}">
+                                      <img data-src="${moviesData[i].image}" alt="${moviesData[i].title}" class="poster-img">
                                       <p class="movie-desc">${moviesData[i].simple_desc}</p>
                                       </div>
                                       <div class="infos">
@@ -836,11 +845,11 @@ function generateMyWatchListMovies(sec) {
         filmsCounter += 1;
         cardsContainer.innerHTML += `<div class="movie-card">
                                         <div class="movie-poster">
-                                        <img src="${
+                                        <img data-src="${
                                           moviesData[myMovies[i]].image
                                         }" alt="${
           moviesData[myMovies[i]].title
-        }">
+        }" class="poster-img">
                                         <p class="movie-desc">${
                                           moviesData[myMovies[i]].simple_desc
                                         }</p>
@@ -1057,3 +1066,25 @@ function generateMovieFromUserAnswers(){
   })
   return moviesResult.length > 0 ? moviesResult : worstCase();
 }
+//lazy load.
+function lazyLoading(){
+  let options = {
+    root:null,
+    rootMargin:'0px',
+    threshold:0.25,
+  };
+  let allPosterImgs = document.querySelectorAll(".movie-card .movie-poster .poster-img");
+  let callback = (entries,observer)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && entry.target.classList.contains("poster-img")){
+        let imgUrl = entry.target.getAttribute("data-src");
+        entry.target.setAttribute("src",imgUrl);
+      };
+    });
+  };
+  let observer = new IntersectionObserver(callback,options);
+  allPosterImgs.forEach(img=>{
+    observer.observe(img);
+  });
+}
+lazyLoading();
